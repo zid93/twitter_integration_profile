@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Social Media Management</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'js/sharebox.js' %}"></script>
+</head>
+{% block content %}
+    <body>
+        <button onclick="facebook()">Click me</button>
+        <h2 style="text-align:center">User Profile Card</h2>
+            <div class="card">
+              <img src="{{ image }}" alt="John" style="width:100%">
+              <h1>{{ name }}</h1>
+              <p class="title">{{ username }}</p>
+              <p>{{ description }}</p>
+              <div style="margin: 24px 0;">
+                  <p>Followers : {{ followers }}</p>
+                  <p>Following : {{ following }}</p>
+              </div>
+              <p><a href="{{ twitter }}">login twitter</a></p>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Tweet</th>
+                    <th>Like</th>
+                    <th>Reply</th>
+                </tr>
+                {% for data in tweet %}
+                    <tr>
+                        <td>{{ data.text }}</td>
+                        <td>{{ data.public_metrics.like_count }}</td>
+                        <td>{{ data.public_metrics.reply_count }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+    </body>
+{% endblock %}
+</html>
